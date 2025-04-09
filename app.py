@@ -27,6 +27,11 @@ def latest():
     if latest_alert:
         return jsonify(latest_alert)
     return jsonify({"message": "Henüz veri yok."})
+@app.route("/clear", methods=["POST"])
+def clear():
+    global latest_alert
+    latest_alert = {}
+    return jsonify({"status": "cleared"})
 
 # 🔥 Burası önemli: Render'ın bağlanabilmesi için 0.0.0.0 ve port 10000
 if __name__ == '__main__':
